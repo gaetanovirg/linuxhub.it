@@ -5,8 +5,8 @@ date: 2023-02-17 07:00
 layout: post 
 author: Davide Galati (in arte PsykeDady)
 author_github: PsykeDady
-coauthor: linuxhubit
-coauthor_github: linuxhubit
+coauthor: Gaetanovirg
+coauthor_github: gaetanovirg
 published: true
 tags: 
 - javascript
@@ -15,13 +15,13 @@ tags:
 
 [&rarr; Articolo precedente: introduzione e variabili](https://linuxhub.it/articles/howtodev-javascript-pt1)  
 
-Molto odiato, almeno quanto è usato, JavaScript è alla base dello sviluppo web e anche ormai molte applicazioni lato desktop.  
+JavaScript è alla base dello sviluppo web e di molte applicazioni lato desktop.  
 
-Vediamo ora altre tipologie di variabili creabili in JavaScript e come funzionano i blocchi di codice.  
+Vediamo altre tipologie di variabili creabili in JavaScript e il funzionamento dei blocchi di codice.  
 
 ## Obiettivi
 
-Lista degli obiettivi che a fine articolo il lettore consegue:
+A fine articolo il lettore svilupperá delle conoscenze su : 
 
 - Oggetti JavaScript
 - blocchi di codice
@@ -31,24 +31,24 @@ Lista degli obiettivi che a fine articolo il lettore consegue:
 
 ## Prerequisiti
 
-Per la comprensione di questo articolo è necessaria la lettura del precedente articolo su JavaScript:
+Per la comprensione di questo articolo è necessario un ripasso del precedente articolo su JavaScript:
 
 - [introduzione e variabili](https://linuxhub.it/articles/howtodev-javascript-pt1)
 
-Inoltre è consigliata una conoscenza di:
+Sono consigliati dei prerequisiti quali:
 
 - Gestione dei puntatori e della memoria
-- Algoritmi e diagrammi a blocchi (o comunque la logica che c'è dietro)
+- Algoritmi e diagrammi a blocchi 
 
 ## Oggetti JavaScript
 
 Un tipo particolare di variabile è l'oggetto. In JavaScript per "oggetto" (differente dal concetto di classe degli altri linguaggi) si intende un insieme (che può anche assumere un ordine gerarchico) di variabili.
 
-Un oggetto si crea ed inizializza racchiudendo le sue "variabili" tra parentesi graffe (`{` e `}`) e separandole da virgola.
+Un oggetto si crea ed inizializza racchiudendo le sue "variabili" tra parentesi graffe (`{` e `}`) e separandole da una virgola.
 
-Ogni variabile al suo interno a sua volta viene inizializzato utilizzando il carattere "`:`" per separare l'etichetta dal suo valore.
+Ogni variabile al suo interno a sua volta viene inizializzata utilizzando il carattere "`:`" per separare l'etichetta dal suo valore.
 
-Facciamo un esempio pratico, creiamo un oggetto che rappresenta una coppia di valori numerici assegnati ad un etichetta alfanumerica (una stringa): 
+Ecco un esempio sulla creazione di un oggetto, che rappresenta una coppia di valori numerici assegnati ad un etichetta alfanumerica (una stringa): 
 
 ```javascript
 let oggetto={
@@ -57,8 +57,7 @@ let oggetto={
 	coordinataY:3
 }
 ```
-
-Si possono poi richiamare le singole "variabili" che fanno parte dell'oggetto scrivendo dopo la sua etichetta il carattere '`.`' seguito dal nome della variabile.  
+E' possibile richiamare , le singole "variabili" che fanno parte dell'oggetto scrivendo dopo la loro etichetta il carattere '`.`' seguito dal nome della variabile.  
 Ad esempio generiamo una stampa a schermo per questo oggetto:
 
 ```javascript
@@ -73,7 +72,9 @@ Le coordinate dell'oggetto 'Punto 1' sono X=0 ed Y=3
 
 ## Blocchi di istruzioni
 
-Il concetto di "blocco di codice" è presente in moltissimi linguaggi, rappresenta *un inseme di istruzioni* che viene visto come *un unica istruzione*. Il suo interno vive un po' *di vita propria* se vogliamo: infatti son disponibili (o **visibili**, più corretto in gergo) tutte le variabili dichiarate al suo esterno, ma ciò che viene dichiarato al suo interno non è a sua volta visibile all'esterno. 
+Il concetto di "blocco di codice" è presente in moltissimi altri linguaggi.
+Rappresenta *un insieme di istruzioni* visualizzate come *un'unica istruzione*.
+L'interno vive un po' *di vita propria* se vogliamo dire: infatti sono disponibili tutte le variabili dichiarate al suo esterno,  ciò che viene dichiarato all' interno non è a sua volta visibile all'esterno. 
 
 Un blocco di codice in JavaScript è delimitato dalle parentesi graffe `{` e `}`:
 
@@ -93,11 +94,11 @@ console.log("valore della i="+i)
 >  
 > Se non ci fosse il blocco, ci sarebbero due "let i" una dopo l'altra, uscirebbe perciò un errore del genere `SyntaxError:` seguito da `Identifier 'i' has already been declared`.
 
-Questo nuovo approccio ci introduce quindi un importante novità: **la visibilità delle variabili**, ovvero una volta che sono dichiarate, *fino a dove una variabile può essere utilizzata* e dove invece, *non esiste più*: dovrebbe quindi essere chiaro che, **in presenza di un blocco di istruzioni**, le variabili dichiarate al suo interno, **sono visibili solo fintanto che le si richiamano al suo interno**. 
+Questo nuovo approccio ci introduce quindi un importante novità: **la visibilità delle variabili**, ovvero una volta che sono dichiarate, *fino a dove una variabile può essere utilizzata* e dove invece, *non esiste più*: dovrebbe quindi essere chiaro che, **in presenza di un blocco di istruzioni**, le variabili dichiarate al suo interno, **sono visibili solo fintanto le si richiamino al suo interno**. 
 
 ## Visibilità delle variabili e var
 
-Per capire meglio il concetto di visibilità delle variabili si può immaginare di scrivere il seguente codice: 
+Per comprendere il concetto di visibilità delle variabili si può immaginare di scrivere il seguente codice: 
 
 ```javascript
 {
@@ -107,14 +108,15 @@ Per capire meglio il concetto di visibilità delle variabili si può immaginare 
 console.log("valore di i="+i)
 ```
 
-Il risultato di quest'operazione è un errore con scritto:
+Il risultato di quest'operazione genera il seguente errore:
 
 ```plain
 ReferenceError: i is not defined
 ```
 
-Ovvero la `i` non esiste. Infatti al di fuori delle parentesi graffe, come già detto, tutto ciò che è stato dichiarato nel blocco (e non che era già esistente) non viene più considerato.  
-Esiste tuttavia un modo di creare le variabili che "*va oltre il concetto di blocco di istruzioni*". Questo metodo consiste nell'utilizzare `var` piuttosto che `let`: 
+La `i` non esiste. Al di fuori delle parentesi graffe, come già detto, tutto ciò che è stato dichiarato nel blocco (e non che era già esistente) non viene più considerato.  
+Tuttavia vi é un metodo per creare le variabili che "*va oltre il concetto di blocco di istruzioni*". 
+Questo metodo consiste nell'utilizzare `var` piuttosto che `let`: 
 
 ```javascript
 {
@@ -132,7 +134,7 @@ valore di i=0
 
 ## Blocco condizionale if
 
-La programmazione vista fin ora è un genere di programmazione "lineare", senza alcuna diramazione che non induce alcun dubbio di come un software inizia e finisce.
+La programmazione vista fin ora è un genere di programmazione "lineare", senza alcuna diramazione che non induce alcun dubbio il funzionamento di un software.
 
 Questo scenario è tuttavia completamente irrealistico, normalmente un software valuta degli input e produce un output preciso in base a dei calcoli.
 
@@ -140,7 +142,7 @@ Ed è in questo contesto che si può introdurre il blocco condizionale if.
 
 ### if
 
-L'if permette di eseguire un istruzione solo se la sua condizione ha valore booleano `true`. Nota che tale valore può essere data tanto da una variabile booleana, quanto da un operazione logica (confronto ad esempio o operazione binaria).
+L'if permette di eseguire un istruzione solo se la sua condizione ha valore booleano `true`. Tale valore può essere dato tanto da una variabile booleana, quanto da un operazione logica (confronto ad esempio o operazione binaria).
 
 Se la condizione incontrata non è un booleano viene convertito in esso, ad esempio lo `0` viene considerato `false`
 
@@ -165,24 +167,24 @@ Ovviamente scrivere:
 if(carte!=1) console.log("Hai "+carte+" carte")
 ```
 
-avrebbe avuto lo stesso risultato.
+avrebbe avuto lo stesso output.
 
 ### Variabilità dell'input
 
-In questi casi potrebbe sembrare superfluo utilizzare questo genere di diramazioni. Negli esempi trattati i valori son "hard-coded" ovvero fissi nel codice e l'output è prevedibile.
+In questi casi potrebbe sembrare superfluo utilizzare questo genere di diramazioni. Negli esempi trattati i valori sono "hard-coded" ovvero fissi nel codice e l'output è prevedibile.
 
-Questo perché, per amor di semplicità, non è stata ancora introdotta alcuna metodologia per fare "variare" l'input. Più in la saranno trattati e sarà più chiaro che, normalmente, non si ha nessun controllo di quale valore possono contenere alcune variabili.
+Questo perché, non è stata ancora introdotta alcuna metodologia per far "variare" l'input. Più in la saranno trattati e sarà più chiaro che, normalmente, non si ha nessun controllo di quale valore possono contenere alcune variabili.
 
 ### Collegare più condizioni
 
-Per collegare più condizioni si hanno fondamentalmente due casi:
+Per collegare più condizioni si hanno due casi:
 
 - l'unione delle due condizioni (detto **or**).
 - l'intersezione delle due condizioni (detta **and**).
 
 Vi è poi il modo di "negare" una determinata condizioni apponendo il carattere "*not*" prima di essa.
 
-Le operazioni logiche tra booleane son state trattate nel primo articolo di JavaScript e riguardano le operazioni disponibili tra booleani.
+Le operazioni logiche tra booleane sono state trattate nel primo articolo di JavaScript e riguardano le operazioni disponibili tra booleani.
 
 Come si collega tutto ciò quando si parla di *if*?
 
@@ -193,7 +195,7 @@ Supponiamo di avere due condizioni di cui verificarne l'intersezione, ad esempio
 Nota: le condizioni son due, la carta deve essere un **sette** E deve essere di **oro**, questa si chiama intersezione, ovvero una delle due caratteristiche, da sola, non vale. Devono avvenire insieme.  
 Ora che abbiamo chiaro lo scenario proviamo a scrivere un codice javascript che ci dice se la nostra carta è un sette d'oro o no. Per semplicità avremo due variabili, una memorizza il seme a parole ("oro", "coppe", "spade", "bastoni") l'altra il numero (Da 1 a 10, dove 8,9 e 10 son le figure).
 
-Un metodo per intersecare le due condizioni potrebbe semplicemente essere mettere un if dentro un altro: 
+Un metodo per intersecare le due condizioni potrebbe semplicemente essere concatenare un if dentro un altro: 
 
 ```javascript
 let carta=7
@@ -202,7 +204,7 @@ let seme="oro"
 if(carta==7) if (seme=="oro") console.log("punto!")
 ```
 
-Ma generalmente si preferisce utilizzare gli operatori logici. Come già spiegato nell'articolo precedente, il simbolo dell'and logico è `&&`:
+Generalmente si preferisce utilizzare gli operatori logici. Come già spiegato nell'articolo precedente, il simbolo dell'and logico è `&&`:
 
 ```javascript
 let carta=7
@@ -304,7 +306,7 @@ Questo codice riproduce come risultato:
 Non hai carte
 ```
 
-Ma in base al valore della variabile carte potrebbe avere altri 2 output.
+Ma in base al valore della variabile carte si  potrebbero avere altri 2 output.
 
 Per carte positivo uguale a 1:
 
@@ -316,7 +318,7 @@ Altrimenti mostra il numero carte.
 
 ### Più istruzioni
 
-Come già detto l'if, subito dopo, si aspetta un istruzione. Questo potrebbe, in modo apparente, essere un limite. "*E se volessi mettere due istruzioni? dovrei usare due if uguali?*", assolutamente no, i **blocchi di istruzioni** servono a questo infatti.
+Come già detto l'if, subito dopo,  aspetta un istruzione. Questo potrebbe, in modo apparente, essere un limite. "*E se volessi mettere due istruzioni? dovrei usare due if uguali?*", assolutamente no, i **blocchi di istruzioni** servono a questo infatti.
 
 Tramite blocco di istruzioni, a seguito di un if, è possibile inserire più istruzioni che verranno eseguite se la condizione risulta `true`: 
 
@@ -338,7 +340,7 @@ Hai 12 carte
 Ti mancano 28 carte
 ```
 
-Ovviamente è possibile applicare lo stesso ragionamento ad else: 
+É possibile applicare lo stesso ragionamento ad else: 
 
 ```javascript
 let carte=12; 
@@ -424,7 +426,7 @@ console.log("Ti mancano "+differenza+ " carte")
 
 ## Blocco switch
 
-Il blocco switch è una struttura che analizza una variabile e, in base al suo valore, esegue una serie di istruzioni a discapito di altre.
+Il blocco switch è una struttura che analizza una variabile e, in base al suo valore, ne esegua una serie di istruzioni a discapito di altre.
 
 A conti fatti è una versione molto ridotta di un *if-else-if* in cui la condizione è veicolata da una sola variabile.
 
